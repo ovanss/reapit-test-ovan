@@ -36,12 +36,18 @@ export const handleOnCloseModal =
     closeModal()
   }
 
+interface IProp {
+  id: string
+  address: string
+  price: number
+}
+
 export const TableExample: FC = () => {
   const { connectSession } = useReapitConnect(reapitConnectBrowserSession)
 
   // const [indexExpandedRow, setIndexExpandedRow] = useState<number | null>(null)
   // const { Modal, openModal, closeModal } = useModal()
-  const [properties, setProperties] = useState<any>([])
+  const [properties, setProperties] = useState<IProp[]>([])
   const [loading, setLoading] = useState(false)
   const [headers, setHeaders] = useState<string[]>([])
   const [activeDataId, setActiveDataId] = useState('')
@@ -121,8 +127,11 @@ export const TableExample: FC = () => {
     return <p>loading...</p>
   }
 
+  // if (properties.length === 0) return null
+
   // const headers = Object.keys(properties[0])
   // console.log('headers', headers)
+
   return (
     <>
       <Title>Properties for Sale</Title>
@@ -134,6 +143,7 @@ export const TableExample: FC = () => {
       <Table data-num-columns-excl-action-col="7" data-has-expandable-action>
         <TableHeadersRow>
           {headers.map((header, i) => {
+            console.log('header', header)
             return <TableHeader key={i}>{header}</TableHeader>
           })}
           <TableHeader>
@@ -171,7 +181,7 @@ export const TableExample: FC = () => {
                 }}
               >
                 {Object.values(property).map((row: any, i) => {
-                  console.log('row', row)
+                  // console.log('row', row)
 
                   return <TableCell key={i}>{row}</TableCell>
                 })}
@@ -198,7 +208,7 @@ export const TableExample: FC = () => {
                 <InputWrap>
                   <ButtonGroup>
                     <Button chevronRight intent="primary">
-                      updata
+                      update address
                     </Button>
                   </ButtonGroup>
                 </InputWrap>
