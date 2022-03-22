@@ -41,7 +41,7 @@ export const TableExample: FC = () => {
 
   // const [indexExpandedRow, setIndexExpandedRow] = useState<number | null>(null)
   // const { Modal, openModal, closeModal } = useModal()
-  const [properties, setProperties] = useState<any>([null])
+  const [properties, setProperties] = useState<any>([])
   const [loading, setLoading] = useState(false)
   const [headers, setHeaders] = useState<string[]>([])
   const [activeDataId, setActiveDataId] = useState('')
@@ -121,11 +121,8 @@ export const TableExample: FC = () => {
     return <p>loading...</p>
   }
 
-  if (properties.length === 0) return null
-
   // const headers = Object.keys(properties[0])
   // console.log('headers', headers)
-
   return (
     <>
       <Title>Properties for Sale</Title>
@@ -162,7 +159,7 @@ export const TableExample: FC = () => {
             </TableCell>
             <TableExpandableRowTriggerCell isOpen />
           </TableRow> */}
-          {properties?.map((property: any) => {
+          {properties.map((property: any) => {
             console.log(property)
             return (
               <TableRow
